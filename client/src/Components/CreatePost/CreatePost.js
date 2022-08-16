@@ -75,7 +75,7 @@ function CreatePost() {
                 }
             })
             .catch((err) => {
-                console.log(err)
+                // console.log(err)
                 navigate('/login')
             })
     }, [])

@@ -126,7 +126,7 @@ function Blog() {
                 setComment("")
             })
             .catch((err) => {
-                alert(err, "error of posting comment")
+                // alert(err, "error of posting comment")
 
                 if (err.response.data.error == "User not authorised") {
                     setModalLoginComment(true)
