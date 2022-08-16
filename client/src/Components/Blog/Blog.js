@@ -139,7 +139,7 @@ function Blog() {
     useEffect(() => {
         axios.get(`/blogPost/currentBlog/${id}`)
             .then((res) => {
-                console.log(res.data.data, "blog data")
+                // console.log(res.data.data, "blog data")
                 if (res.data.data) {
                     setBlogData(res.data.data);
                     setLoader(false)
@@ -172,7 +172,7 @@ function Blog() {
                 }
             })
             .catch((err) => {
-                console.log(err)
+                // console.log(err)
             })
 
     }, [!modalLoginComment, modalLoginComment])
@@ -181,7 +181,7 @@ function Blog() {
 
     useEffect(() => {
         function isImage(url) {
-            console.log(/^(https|http)?:\/\//.test(url), "jijijijijijijjijijijii");
+            // console.log(/^(https|http)?:\/\//.test(url), "jijijijijijijjijijijii");
             setBImageVerify(/^(https|http)?:\/\//.test(url))
         }
         isImage(blogData.backgroundImage)

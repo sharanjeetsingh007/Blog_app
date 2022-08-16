@@ -10,33 +10,25 @@ import signOut from '../redux/action2';
 
 function ProtectedRoutes() {
     const location = useLocation();
-
     const dispatch = useDispatch();
 
     const [postData, setPostData, changeReCallPost] = useOutletContext();
 
-
+    // redux state
     const user = useSelector(state => state.reducer.userLogin)
 
     useEffect(() => {
         axios.get('/auth/redirecthome', { withCredentials: true })
             .then((res) => {
-                // console.log(res.data, 'response in protected routes')
                 if (res.data.message) {
                     dispatch(signIn())
                 }
             })
-            // .then((res) => {
-
-            // })
             .catch((err) => {
                 console.log(err)
                 dispatch(signOut())
             })
     }, [])
-
-    // console.log(user, "user in protected routes")
-
     return user == true ? <Outlet context={[postData, setPostData, changeReCallPost]} /> : <Navigate to="/login" replace state={{ from: location }} />
 
 }
