@@ -8,7 +8,7 @@ const path = require("path")
 require('dotenv').config();
 
 // ** MIDDLEWARE ** //
-const whitelist = ['http://localhost:3000', 'http://localhost:9000', 'https://blog-app-nodejs-reactjs.herokuapp.com']
+const whitelist = ['http://localhost:3000', 'http://localhost:9000', 'https://blog-app-sharan.herokuapp.com']
 const corsOptions = {
     origin: function (origin, callback) {
         console.log("** Origin of request " + origin)
