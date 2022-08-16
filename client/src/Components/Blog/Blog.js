@@ -8,8 +8,6 @@ import WestIcon from '@mui/icons-material/West';
 import { Avatar } from '@mui/material';
 import Comment from '../Comment/Comment';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-// import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import ModalEdit from '../ModalEdit/ModalEdit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModalDelete from '../ModalDelete/ModalDelete';
@@ -29,7 +27,7 @@ function Blog() {
     const [postData, setPostData, changeReCallPost] = useOutletContext();
 
 
-
+    // states 
     const { id } = useParams();
     const [blogData, setBlogData] = useState({});
     const [commentState, setCommentState] = useState(false);
@@ -49,21 +47,16 @@ function Blog() {
     const [bImageVerify, setBImageVerify] = useState("")
 
 
-
-
-
-
-
-
-
-
+    // change state modal
     const changeModalLogin = (value) => {
         setModalLogin(value)
     }
+    // change state
     const changeModalLoginComment = (value) => {
         setModalLoginComment(value)
     }
 
+    // change edit delete background
     const changeButtonBackground = () => {
         if (blog__wrapperDoM.scrollTop >= 290) {
             setIconColorChange(true)
@@ -77,46 +70,35 @@ function Blog() {
 
         }
     }
-    // console.log(id, 'id in blog')
-    // console.log(blogData, 'blogData')
-    const blog__wrapperDoM = document.getElementById("blog__wrapper")
 
-    console.log(blog__wrapperDoM, "BLOG WRAPPER")
+    // scroll functionality
+    const blog__wrapperDoM = document.getElementById("blog__wrapper")
     if (blog__wrapperDoM) {
         blog__wrapperDoM.addEventListener("scroll", changeButtonBackground)
 
     }
 
+    // update blogData state after new post
     const handleModalBlogUpdate = (values) => {
-        console.log(values.title, "clicked update ")
         setBlogData((blogData) => ({
-
             ...blogData,
             title: values.title,
             body: values.body,
             category: values.category,
             backgroundImage: values.backgroundImage,
-
-
-
         }));
     }
 
-    // setAllComments([...allComments, res.data.data])
+    // update state after submit comment
     const handleModalCommentUpdate = (values) => {
-
         let copyAllComments = allComments.map(data => { return { ...data } })
-        // console.log(copyAllComments.find(item => item._id == values.id), "find")
         copyAllComments.find(item => item._id == values.id).body = values.body;
-        // console.log(copyAllComments, 'array2')
         setAllComments(copyAllComments)
     }
 
 
-    // console.log(allComments, 'allcomments')
-
+    // change state input
     const handleChangeInput = (e) => {
-        // console.log("value changed")
         setComment(e.target.value)
     }
 
@@ -127,14 +109,12 @@ function Blog() {
         setShowModal(value)
     }
 
-
+    // post comment button handle
     const handlePostComment = (idIs) => {
-
         if (!comment) {
             alert("Empty comment can't be posted")
             return;
         }
-        // console.log("clicked post comment")
         const data = {
             profilePic: "",
             body: comment,
@@ -142,42 +122,21 @@ function Blog() {
         }
         axios.post("/comments/postComment", data, { withCredentials: true })
             .then((res) => {
-                // console.log(res, "response of posting comment")
-
                 setAllComments([...allComments, res.data.data])
                 setComment("")
             })
             .catch((err) => {
-                console.log(err, "error of posting comment")
-                // alert(err.response.data.error)
+                alert(err, "error of posting comment")
 
                 if (err.response.data.error == "User not authorised") {
                     setModalLoginComment(true)
                 }
                 setComment("")
-
             })
     }
 
-
-    // useEffect(() => {
-
-    //     axios.get(`http://localhost:9000/blogPost/currentBlog/${id}`)
-    //         .then((res) => {
-    //             console.log(res.data.data)
-    //             if (res.data.data) {
-    //                 setBlogData(res.data.data);
-    //                 return;
-    //             }
-    //         })
-    //         .catch((err) => {
-    //             alert(err)
-    //         })
-
-    // }, [handleModalBlogUpdate])
-
+    // get current blog
     useEffect(() => {
-
         axios.get(`/blogPost/currentBlog/${id}`)
             .then((res) => {
                 console.log(res.data.data, "blog data")
@@ -189,53 +148,27 @@ function Blog() {
             })
             .catch((err) => {
                 alert(err)
-                // setLoader(false)
             })
-
-        // to get current user details
-        // axios.get('http://localhost:9000/auth/redirecthome', { withCredentials: true })
-        //     .then((res) => {
-        //         console.log(res.data, 'current user')
-        //         if (res.data.message) {
-        //             // console.log(res.data.data, 'current user')
-        //             setCurrentUser(res.data.data)
-
-
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     })
-
 
         axios.get(`/comments/${id}`)
             .then((res) => {
-
-                // console.log(res.data.data, "in all comments")
                 setAllComments(res.data.data)
                 setLoaderComment(false)
-                // setAllComments(state => [...state, res.data.data])
-
             })
             .catch((err) => {
                 alert(err)
             })
-
     }, [])
 
 
 
-
+    //get currnet user
     useEffect(() => {
-        //get currnet user
         axios.get('/auth/redirecthome', { withCredentials: true })
             .then((res) => {
                 console.log(res.data, 'current user')
                 if (res.data.message) {
-                    // console.log(res.data.data, 'current user')
                     setCurrentUser(res.data.data)
-
-
                 }
             })
             .catch((err) => {
@@ -256,11 +189,7 @@ function Blog() {
 
 
 
-    console.log(currentUser, 'current userrrrr')
-    console.log(allComments, 'allComments ')
-
     return (<>
-        {/* {showModalDelete ? <ModalDelete /> : */}
         {loader ? <LoadingSpinner /> :
 
             <div className={commentState == true ? "Blog--active" : "Blog"}>
@@ -282,13 +211,10 @@ function Blog() {
                             {bImageVerify && <img
                                 className={loadingImage ? "skeleton" : undefined}
                                 style={{ display: loadingImage ? "block" : "none" }}
-                            // src={backgroundImage}
-                            // onLoad={() => setLoadingImage(false)}
                             />}
 
 
                             {bImageVerify && <img
-                                // className={loadingImage && 'skeleton'}
                                 style={{ display: loadingImage ? "none" : "block" }}
                                 src={blogData.backgroundImage}
                                 alt='blog-image'
@@ -296,25 +222,13 @@ function Blog() {
                             />}
 
                             {!bImageVerify && <img
-                                // className={loadingImage ? "skeleton" : undefined}
-                                // style={{ display: loadingImage ? "none" : "block" }}
                                 src="https://wallpaperaccess.com/full/1285952.jpg"
-
                                 alt='blog___image'
-
                             />}
-
-
-                            {/* {!bImageVerify && <img
-                                src="https://wallpaperaccess.com/full/1285952.jpg"
-                                alt='blog-image'
-                            />} */}
                         </div>
                         <div className='blog__bottom'>
                             <h2>{blogData.title}</h2>
                             <div className='blog__body'
-                            // style={{ width: commentState ? "1100px" : "870px" }}
-
                             >
                                 <p dangerouslySetInnerHTML={{ __html: blogData.body }}></p>
                             </div>
@@ -328,7 +242,6 @@ function Blog() {
                         <div className="edit">
                             <span>
                                 <IconButton aria-label="delete" size="large"
-
                                     onClick={() => setShowModal(true)}
                                 >
                                     <BorderColorIcon
@@ -343,7 +256,6 @@ function Blog() {
                                 >
                                     <DeleteIcon
                                         style={{ color: iconColorChange ? "black" : "white" }}
-
                                     />
                                 </IconButton></span>
                         </div>
@@ -401,7 +313,6 @@ function Blog() {
 
                         <div className='comment__section__allcomments'>
                             <h4>Comments</h4>
-
                             <div className="comments__stacks">
                                 {loaderComment ? <div className='loaderComment__wrapper'><CircularProgress style={{ color: "black" }} thickness={2} /> </div> : <>
                                     {allComments.length !== 0 ? allComments.map((comment) => {
@@ -415,18 +326,12 @@ function Blog() {
                                             CommentUserEmail={comment.commentUserEmail}
                                             commentId={comment._id}
                                             handleModalCommentUpdate={handleModalCommentUpdate}
-
-
                                         />
 
                                     }) : <h5>No Comments</h5>}
                                 </>}
                             </div>
-
-
                         </div>
-
-
                     </div>
                 </div>
                 <ModalEdit
@@ -444,12 +349,9 @@ function Blog() {
                     blogData={blogData}
                     setBlogData={setBlogData}
                     handleModalBlogUpdate={handleModalBlogUpdate}
-
-
                 />
             </div>
         }
-
         <ModalDelete
             showModalDelete={showModalDelete}
             setShowModalDelete={setShowModalDelete}
@@ -459,8 +361,6 @@ function Blog() {
             changeReCallPost={changeReCallPost}
 
         />
-
-        {/* } */}
     </>
 
     )

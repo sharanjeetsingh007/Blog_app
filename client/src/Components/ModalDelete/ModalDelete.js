@@ -10,13 +10,10 @@ import Button from '@mui/material/Button';
 
 function ModalDelete({ setShowModalDelete, showModalDelete, postId, userEmailBlog, changeReCallPost }) {
 
-    // console.log(showModalDelete, "show modal delete")
-    // console.log(userEmailBlog, "delte modal userEmailBlog ;)")
-
-
+    // react-router
     const navigate = useNavigate();
 
-
+    // delete post with comments
     const deletePostWithComments = (idIs) => {
 
         const data = {
@@ -26,30 +23,21 @@ function ModalDelete({ setShowModalDelete, showModalDelete, postId, userEmailBlo
         axios.delete(`/blogPost/delete/${idIs}`, { withCredentials: true, data: data })
             .then((res) => {
                 changeReCallPost(true)
-                // console.log(res, "res in deleteing")
                 navigate("/")
             })
             .catch((err) => {
-                // alert(err.response.data.error)
                 if (err.response.data.error) {
                     return alert(err.response.data.error)
                 }
                 alert(err)
             })
-
-
-
     }
-
     return (
         <div
-            // className='ModalDelete'
             className={showModalDelete ? "ModalDelete--active" : "ModalDelete"}
             onClick={() => setShowModalDelete(false)}
-        // style={{ display: showModalDelete == true ? "inline" : "none" }}
         >
             <div className='modalDelete__wpapper'>
-
                 <div className='modalDelete__main'>
                     <div className='modaldelete__modal'
                         onClick={e => e.stopPropagation()}
@@ -69,30 +57,19 @@ function ModalDelete({ setShowModalDelete, showModalDelete, postId, userEmailBlo
                         </div>
                         <div className='footer'>
                             <div className='footer__main'>
-                                {/* <button
-                                    onClick={() => setShowModalDelete(false)}
-
-                                >Cancel</button> */}
                                 <Button variant="outlined"
                                     style={{ color: "black", borderColor: "black" }}
                                     onClick={() => setShowModalDelete(false)}
                                 >C<span>ancel</span></Button>
-
-                                {/* <button
-                                    onClick={() => deletePostWithComments(postId)}
-                                >Delete</button> */}
                                 <Button variant="outlined"
                                     color='error'
                                     onClick={() => deletePostWithComments(postId)}
                                 >D<span>elete</span></Button>
-
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

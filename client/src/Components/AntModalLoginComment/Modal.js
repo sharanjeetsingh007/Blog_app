@@ -10,10 +10,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 
 function ModalAntComment({ modalLogin, changeModalLogin, From }) {
-
+    // react-router 
     const navigate = useNavigate();
     const location = useLocation();
 
+    // state
+    const [formikChangeToInitial, setFormikChangeToInitial] = useState(false);
+
+
+    // As per the login status route the user
     const handleOk = () => {
         if (From == 'plus-button') {
             navigate("/createPost")
@@ -21,8 +26,6 @@ function ModalAntComment({ modalLogin, changeModalLogin, From }) {
             navigate("/")
         }
     }
-    const [formikChangeToInitial, setFormikChangeToInitial] = useState(false);
-
 
     return (
         <Modal

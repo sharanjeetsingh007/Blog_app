@@ -21,38 +21,29 @@ import './Login.css'
 
 function Login({ From, currentPath, changeModalLogin, formikChangeToInitial }) {
 
-
+    // react-router
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // console.log(hi, 'hi')
-
+    // handel login
     const formik = useFormik({
-
-
         initialValues: {
-
             email: "",
             password: "",
-
         },
         validationSchema: loginSchema,
-
         onSubmit: (values) => {
             const data = {
                 email: values.email,
                 password: values.password,
             }
-
             axios.post('/auth/login', data, { withCredentials: true })
                 .then((res) => {
                     alert(res.data.message || res.data.error)
-
                     if (res.data.message) {
                         dispatch(signIn());
                         if (location.state?.from) {
-                            console.log(location.state, 'state login')
                             navigate(location.state.from);
                         } else {
                             if (currentPath) {
@@ -63,25 +54,11 @@ function Login({ From, currentPath, changeModalLogin, formikChangeToInitial }) {
                         }
                     }
                 })
-
                 .catch((err) => {
                     alert(err.response.data.error)
                 })
-
         }
     })
-
-    // console.log(modalLogin, 'modalLogin in login component')
-    // useEffect(() => {
-    //     // <-- check if modal closed & reset
-    //     console.log(modalLogin, 'MODAL login in useeffect')
-    //     if (modalLogin == false) {
-    //         formik.handleReset();
-    //         formik.resetForm();
-    //     }
-
-
-    // }, [modalLogin]);
 
     useEffect(() => {
         if (formikChangeToInitial == false) {
@@ -90,12 +67,6 @@ function Login({ From, currentPath, changeModalLogin, formikChangeToInitial }) {
         }
 
     }, [formikChangeToInitial])
-
-
-    // if (!modalLogin) {
-    //     formik.handleReset();
-
-    // }
 
     return (
         <div className='Registration'>

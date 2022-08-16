@@ -22,22 +22,11 @@ function ModalEdit({ handleModalBlogUpdate, setBlogData, blogData, show, closeMo
     const [modalCategory, setModalCategory] = useState("")
     const [modalUserEmailIs, setModalUserEmailIs] = useState("")
     const [modalBImage, setModalBImage] = useState("")
-    // const values = [true, 'sm-down', 'md-down', 'lg-down', 'xl-down', 'xxl-down'];
-    // const [fullscreen, setFullscreen] = useState(true);
-    // const [show, setShow] = useState(false);
 
-    // console.log(modalTitle, 'modal title initial')
 
-    const navigate = useNavigate();
-
+    // handel update blog
     const updateBlog = (idIs) => {
-
-
-        console.log(idIs, "idIs")
-
         if (modalTitle !== title || modalCategory !== category || modalBody !== body || modalBImage !== backgroundImage) {
-            // console.log('not equal')
-
             const data = {
                 "title": modalTitle,
                 "category": modalCategory,
@@ -45,61 +34,34 @@ function ModalEdit({ handleModalBlogUpdate, setBlogData, blogData, show, closeMo
                 "backgroundImage": modalBImage,
                 "emailUserCurrentBlog": email,
             }
-
-
             axios.put(`/blogPost/updateCurrentBlog/${idIs}`, data, { withCredentials: true })
                 .then((res) => {
-                    // console.log(res, "res UPDATING")
                     const dataIs = res.data.data;
-
                     handleModalBlogUpdate({
                         "title": dataIs.title,
                         "body": dataIs.body,
                         "category": dataIs.category,
                         "backgroundImage": dataIs.backgroundImage
-
                     })
-
-
-
                 })
                 .then(() => {
                     closeModal(false)
                 })
                 .catch((err) => {
-                    // console.log(err, "error is updatind data")
                     alert(err.response.data.error)
-
                 })
-
-
-
-
         } else {
             alert("The data need to be changed for update")
         }
-
-
-
-
-
-
     }
 
-
+    // set blog input on render
     useEffect(() => {
-
         setModalBody(body);
         setModalTitle(title);
         setModalCategory(category);
         setModalBImage(backgroundImage);
-        // setModalUserEmailIs(email);
-
     }, [body, title, category, email, username, backgroundImage])
-
-
-
-
 
 
     return <Modal show={show} fullscreen={true} onHide={() => closeModal(false)}>
@@ -107,7 +69,6 @@ function ModalEdit({ handleModalBlogUpdate, setBlogData, blogData, show, closeMo
             <Modal.Title>Edit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
             <div className='modalEdit'>
                 <div className='modalEdit__main'>
                     <div className='buttons__modalEdit'>
@@ -116,28 +77,21 @@ function ModalEdit({ handleModalBlogUpdate, setBlogData, blogData, show, closeMo
                         >
                             Update
                         </Button>
-                        {/* <button
-                            onClick={() => updateBlog(blogId)}
-                        >Publish</button> */}
                     </div>
                     <div className='blog__creater__wrapper'>
                         <div className='textfield__wrapper'>
-                            {/* <p>{modalTitle}</p> */}
                             <label>Title</label>
                             <TextField id="standard-basic" variant="standard" autoComplete='off' fullWidth value={modalTitle} onChange={e => setModalTitle(e.target.value)} />
                         </div>
-
                         <div className='textfield__wrapper'>
                             <label>Category</label>
                             <TextField id="standard-basic" variant="standard" autoComplete='off' fullWidth value={modalCategory} onChange={e => setModalCategory(e.target.value)} />
-
                         </div>
                         <div className='textfield__wrapper'>
                             <label>Background Image</label>
                             <TextField id="standard-basic" variant="standard" autoComplete='off' fullWidth value={modalBImage} onChange={e => setModalBImage(e.target.value)} />
                         </div>
                         <div className='textfield__wrapper__body'>
-
                             <div className='textfield__wrapper__body__row'>
                                 <label>Body</label>
                             </div>
@@ -146,11 +100,8 @@ function ModalEdit({ handleModalBlogUpdate, setBlogData, blogData, show, closeMo
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </Modal.Body>
     </Modal>
 }

@@ -13,10 +13,8 @@ import LoadingSpinner from './Components/LoadingSpinner/LoadingSpinner';
 
 function Layout() {
 
-    const navigate = useNavigate()
 
-    const dispatch = useDispatch()
-    const reCall = useSelector(state => console.log(state.reCall, 'statetttt'))
+    const reCall = useSelector(state => console.log(state.reCall))
 
     const [sidebarToggle, setSidebarToggle] = useState(false)
     const [postData, setPostData] = useState([])
@@ -28,10 +26,6 @@ function Layout() {
         setReCallPost(value => !value)
     }
 
-    // const changePostData = (value) => {
-    //     setPostData(value)
-    // }
-
 
     const changeSidebarToggle = (value) => {
         setSidebarToggle(value => !value)
@@ -42,7 +36,6 @@ function Layout() {
     }
 
 
-    console.log(reCallPost, 'reCallPost ')
 
     useEffect(() => {
         setReCallPost(reCall)
@@ -53,13 +46,11 @@ function Layout() {
         const getPost = () => {
             axios.get("/blogPost/")
                 .then((res) => {
-                    // console.log(res, 'res in getting data')
                     setPostData(res.data.Result)
                     setCopyPostData(res.data.Result)
                     setLoader(false)
                 })
                 .catch((err) => {
-                    // console.log(err, "err in getting post data")
                     alert(err)
                 })
         }
@@ -70,13 +61,11 @@ function Layout() {
         const getPost = () => {
             axios.get("/blogPost/")
                 .then((res) => {
-                    // console.log(res, 'res in getting data')
                     setPostData(res.data.Result)
                     setCopyPostData(res.data.Result)
                     setLoader(false)
                 })
                 .catch((err) => {
-                    // console.log(err, "err in getting post data")
                     alert(err)
                 })
         }
@@ -89,12 +78,8 @@ function Layout() {
                 <Header sidebarToggle={sidebarToggle} changeSidebarToggle={changeSidebarToggle} postData={postData} setPostData={setPostData} SearchFilterStateChange={SearchFilterStateChange} copyPostData={copyPostData} />
                 <div className='layout__body'>
                     {loader ? <LoadingSpinner /> : <>
-                        {/* {sidebarToggle && */}
-
                         <SideBar
                             changeSidebarToggle={changeSidebarToggle} sidebarToggle={sidebarToggle} />
-                        {/* } */}
-
                         <Outlet context={[postData, setPostData, changeReCallPost]} />
                     </>
                     }

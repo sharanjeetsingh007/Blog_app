@@ -15,62 +15,41 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 
 function Home() {
-
+    // redux state
     const user = useSelector(state => state.reducer.userLogin);
+    // react-router
     const navigate = useNavigate();
     const [postData, setPostData] = useOutletContext();
 
 
-    console.log(postData, 'postData in homeeeeeee')
-
-
+    // states
     const [modalLogin, setModalLogin] = useState(false)
-    const [loader, setLoader] = useState(true);
-
 
 
     const changeModalLogin = (value) => {
         setModalLogin(value)
     }
 
-
+    // router as per the login status
     const handlePlusButton = () => {
-
-
         if (!user) {
             setModalLogin(true)
-            console.log('plus click')
-
-
         } else {
             navigate("createPost")
         }
     }
 
-    console.log("Re-render 🎃")
-
     return (
         <div className='Home'>
             <div className='home__main'>
-                {/* <LoadingSpinner /> */}
-                {/* <div className='home__search'>
-                    <input type="text" placeholder="Search" />
-                </div> */}
-                {/* <div className='home__card__wrapper'> */}
-
-
                 <div className='home__card__main'>
                     <ModalAnt
                         From={"plus-button"}
                         modalLogin={modalLogin}
                         changeModalLogin={changeModalLogin}
-
                     />
-
-
                     {postData.length == 0 ? <div className='no__data'><h3>No blogs</h3></div> : postData.map((post, index) => {
                         return <Card
-                            // onClick={() => console.log('jjjj')}
                             title={post.title}
                             category={post.category}
                             backgroundImage={post.backgroundImage}
@@ -82,28 +61,16 @@ function Home() {
                             username={post.username}
                         />
                     })}
-
-
-
                 </div>
-                {/* </div> */}
-
                 <div className='plus__button'
-
                     onClick={handlePlusButton}
-                // onClick={() => navigate("/createPost")}
-
-
                 >
                     <IconButton className='yoo' aria-label="add an alarm">
                         <AddIcon style={{ color: 'white', fontSize: '29px' }} />
                     </IconButton>
                 </div>
-
             </div>
-
         </div>
-
     )
 }
 
