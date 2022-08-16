@@ -1,0 +1,62 @@
+.modal__body {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* .left__content {
+  border: 1px solid green;
+  flex: 0.5;
+} */
+
+.right__content {
+  /* border: 1px solid green; */
+  padding: 20px 0px;
+  flex: 0.5;
+  /* max-height: 400px; */
+  /* overflow: scroll; */
+}
+
+.body___custom > h5 {
+  font-size: 16px;
+}
+
+.right__content > .Registration {
+  height: 300px;
+}
+
+.right__content > .Registration > .registration__main {
+  padding: 20px;
+}
+
+.footer__custom {
+  padding: 10px 24px !important;
+  /* border: 1px solid red; */
+  border-top: 1px solid #f0f0f0;
+  /* position: absolute; */
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.footer__custom > button:nth-child(1) {
+  margin-right: 15px;
+}
+
+.footer__custom > button > span {
+  text-transform: lowercase;
+}
+
+.footer__custom > button {
+  padding: 2px 24px;
+  width: 90px;
+}
+
+.ant-modal-body {
+  padding: 0 !important;
+}
+
+.ant-modal-body > .body___custom {
+  padding: 16px 24px !important;
+}

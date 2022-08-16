@@ -1,0 +1,111 @@
+.ModalDelete {
+  /* border: 3px solid red; */
+  position: fixed;
+
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* transition: all 0.5s; */
+  /* transition: ease 0.9s; */
+  left: -350%;
+  /* transition: 300ms; */
+}
+
+.ModalDelete--active {
+  /* border: 3px solid red; */
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* transition: all 0.5s; */
+  /* transition: ease 0.9s; */
+  /* left: 0; */
+  transition: 0.7s;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.modalDelete__wpapper {
+  /* color: white; */
+  transition: all ease 1s;
+}
+
+.modalDelete__main {
+  display: flex;
+  margin-top: 20%;
+  align-items: center;
+  justify-content: center;
+}
+
+.modaldelete__modal {
+  background-color: white;
+  height: 160px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+}
+
+.modaldelete__modal > .header {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 5px 10px 5px 10px;
+}
+
+.header__main > h5 {
+  font-size: 18px;
+}
+
+.modaldelete__modal > .body {
+  /* flex-grow: 1; */
+  height: 200px;
+  /* border-bottom: 1px solid gray; */
+  border-bottom: 1px solid #f0f0f0;
+
+  padding: 10px;
+  font-size: 14px;
+}
+
+.modaldelete__modal > .footer {
+  padding: 7px 10px 7px 10px;
+}
+
+.header__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__main > h5 {
+  margin: 0;
+}
+
+.footer__main {
+  margin: 0 auto;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: end;
+  /* padding: 5px 10px 5px 10px; */
+}
+.footer__main > button {
+  margin-right: 10px;
+  padding: 1px 16px !important;
+  font-size: 13px;
+}
+.footer__main > button > span {
+  text-transform: lowercase;
+}
+
+.footer__main > button:nth-child(2) {
+  margin-right: 0px;
+}

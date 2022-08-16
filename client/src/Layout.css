@@ -1,0 +1,10 @@
+.layout__body {
+  height: calc(100vh - 80px);
+  /* border: 2px solid green; */
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.layout__body > .LoadingSpinner {
+  height: calc(100vh - 70px);
+}

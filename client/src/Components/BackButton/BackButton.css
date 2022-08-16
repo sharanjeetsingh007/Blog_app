@@ -1,0 +1,11 @@
+#back-button {
+  padding: 5px 30px 5px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: none !important;
+}
+
+#back-button > span {
+  text-transform: lowercase;
+}

@@ -1,0 +1,89 @@
+.Registration {
+  /* border: 2px solid red; */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registration__main {
+  border: 1px solid black;
+  padding: 30px;
+}
+
+.registration__main > h2 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+}
+
+.image__logo {
+  /* border: 1px solid red; */
+  height: 90px;
+  width: 180px;
+  margin: 0 auto;
+}
+
+.image__logo > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* .registration__main > form {
+  border: 2px solid black; 
+  border-top: 1px solid whitesmoke;
+  margin-bottom: 2px;
+} */
+
+.registration__main > form > .textfield__wrapper {
+  /* border: 2px solid black; */
+  height: 70px;
+}
+
+.registration__main > form > .textfield__wrapper:nth-child(1) {
+  /* border: 2px solid black; */
+  height: 70px;
+  /* margin-top: 3px; */
+}
+
+.registration__main > form > .textfield__wrapper > .mui__textfield {
+  /* margin-bottom: 15px; */
+  width: 350px;
+}
+
+.registration__main > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.registration__main > form > .button__register {
+  margin-left: auto;
+  margin-top: 20px;
+}
+
+.registration__main > form > button {
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 411px) {
+  .registration__main > form > .textfield__wrapper > .mui__textfield {
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 313px) {
+  .registration__main > form > .textfield__wrapper > .mui__textfield {
+    width: 200px;
+  }
+}
+
+@media only screen and (max-width: 265px) {
+  .registration__main > form > .textfield__wrapper > .mui__textfield {
+    width: 170px;
+  }
+  .registration__main {
+    width: 220px;
+  }
+}
