@@ -62,9 +62,9 @@ function Blog() {
             setIconColorChange(true)
 
 
-            console.log(blog__wrapperDoM.scrollTop, "scroll y 🔥")
+            // console.log(blog__wrapperDoM.scrollTop, "scroll y 🔥")
 
-            console.log('scroll is greater than then🎃')
+            // console.log('scroll is greater than then🎃')
         } else {
             setIconColorChange(false)
 
@@ -147,7 +147,7 @@ function Blog() {
                 }
             })
             .catch((err) => {
-                alert(err)
+                console.log(err)
             })
 
         axios.get(`/comments/${id}`)
@@ -156,7 +156,7 @@ function Blog() {
                 setLoaderComment(false)
             })
             .catch((err) => {
-                alert(err)
+                console.log(err)
             })
     }, [])
 
@@ -166,7 +166,7 @@ function Blog() {
     useEffect(() => {
         axios.get('/auth/redirecthome', { withCredentials: true })
             .then((res) => {
-                console.log(res.data, 'current user')
+                // console.log(res.data, 'current user')
                 if (res.data.message) {
                     setCurrentUser(res.data.data)
                 }
