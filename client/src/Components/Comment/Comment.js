@@ -55,7 +55,7 @@ const Comment = ({ postId, body, username, date, profilePic, CommentUserEmail, c
                 }
             })
             .catch((err) => {
-                console.log(err)
+                // console.log(err)
             })
     }, [CommentUserEmail, currentUser, handleCommentUpdate])
 

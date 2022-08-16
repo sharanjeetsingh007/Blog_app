@@ -6,7 +6,7 @@ import "./LoadingSpinner.css"
 function LoadingSpinner() {
     return (<div className="LoadingSpinner">
         <CircleLoader
-            size='120'
+            size='120px'
             speedMultiplier="1"
         />
     </div>
