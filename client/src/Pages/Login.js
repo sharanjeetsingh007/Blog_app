@@ -86,6 +86,7 @@ function Login({ From, currentPath, changeModalLogin, formikChangeToInitial }) {
                         </div>
                         <div className='textfield__wrapper'>
                             <TextField
+                                type="password"
                                 error={formik.errors.password && formik.touched.password ? true : false}
                                 className='mui__textfield' id="password" name="password" label="Password" variant="standard"
                                 value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur}

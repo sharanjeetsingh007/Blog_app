@@ -70,6 +70,7 @@ function Registration() {
                     </div>
                     <div className='textfield__wrapper'>
                         <TextField
+                            type="password"
                             error={formik.errors.password && formik.touched.password ? true : false}
                             className='mui__textfield' id="password" name="password" label="Password" variant="standard"
                             value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur}
@@ -78,6 +79,7 @@ function Registration() {
                     </div>
                     <div className='textfield__wrapper'>
                         <TextField
+                            type="password"
                             error={formik.errors.renterpassword && formik.touched.renterpassword ? true : false}
                             className='mui__textfield' id="rrenterpassword" name="renterpassword" label="Renter-password" variant="standard"
                             value={formik.values.renterpassword} onChange={formik.handleChange} onBlur={formik.handleBlur}
